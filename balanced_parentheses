@@ -1,0 +1,15 @@
+def parentheses(str):
+	counter = 0
+	for i in range(0,len(str)):
+		if str[i] == "(":
+			counter += 1
+		elif str[i] == ")":
+			counter -= 1
+			if counter < 0:
+				return False
+	return True
+	
+print parentheses("((()))")
+print parentheses("()()()())")
+print parentheses(")()")
+print parentheses("()())(()")
