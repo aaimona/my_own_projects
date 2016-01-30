@@ -1,1 +1,48 @@
+import random
 
+class Jar(object):
+	def __init__(self):
+		self.jar = []
+		with open("jar.txt", "r") as my_jar:
+			for line in my_jar.readlines():
+				date = line[:10]
+				mem = line[10:-1]
+				new_card = JarCard(date, mem)
+				self.jar.append(new_card)
+
+	def append_to_jar_file(self, card):
+		with open("jar.txt", "a") as my_jar:
+			my_jar.write(card.as_line())
+
+	def happiness_jar(self):
+		finish = False
+		while not finish:
+			option = raw_input("For new memory, enter a. For random memory, enter b.")
+			if option == "a":
+				date = raw_input("Please insert the date (yyyy-mm-dd): ")
+				memory = raw_input("Please insert your memory: ")
+				card = JarCard(date, memory)
+				self.jar.append(card)
+				self.append_to_jar_file(card)
+			elif option == "b":	
+				print random.choice(self.jar)
+			else:
+				done = raw_input("Are you done for now? y/n: ")
+				if done == "y":
+					finish = True
+
+
+class JarCard(object):
+	def __init__(self, date, memory):    
+		self.date = date
+		self.memory = memory
+
+	def __repr__(self):
+		return str(self.date) + ":" + self.memory
+
+	def as_line(self):
+		return str(self.date) + self.memory + "\n"
+
+
+jar = Jar()
+jar.happiness_jar()
