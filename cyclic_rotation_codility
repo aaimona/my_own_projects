@@ -1,0 +1,8 @@
+def rotation(arr, k):
+	if arr == []:
+		return arr
+	else:
+		mod_k = k % len(arr)
+		new_arr = arr[0:-(mod_k)]
+		new_arr = arr[-(mod_k):] + new_arr
+		return new_arr
