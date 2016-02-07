@@ -8,5 +8,5 @@ def binary_gap(number):
 		else:
 			if gap > big_gap:
 				big_gap = gap
-				gap = 0
+			gap = 0
 	return big_gap
