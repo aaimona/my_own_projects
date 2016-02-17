@@ -1,0 +1,10 @@
+def solution(A):
+	B = [0] * len(A)
+	for i in range(0, len(A)):
+		if A[i] > len(A):
+			return 0
+		if B[A[i]-1] == 0:
+			B[A[i]-1] = A[i]
+		else:
+			return 0
+	return 1
